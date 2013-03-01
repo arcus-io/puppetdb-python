@@ -6,14 +6,14 @@ except ImportError:
     from distutils.core import setup
 
 version = '0.0.1'
-
+https://github.com/arcus-io/puppetdb-python/archive/0.0.1.tar.gz
 setup(
     name='puppetdb',
     version=version,
     description='Python client for interacting with PuppetDB',
     url='http://github.com/arcus-io/puppetdb-python',
-    download_url=('http://cloud.github.com/downloads/arcus-io/'
-                  'puppetdb-python/puppetdb-%s.tar.gz' % version),
+    download_url=('https://github.com/arcus-io/'
+                  'puppetdb-python/archive/%s.tar.gz' % version),
     author='Arcus, Inc.',
     author_email='support@arcus.io',
     keywords=['puppet', 'puppetdb'],
