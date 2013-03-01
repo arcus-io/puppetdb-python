@@ -6,7 +6,6 @@ except ImportError:
     from distutils.core import setup
 
 version = '0.0.1'
-https://github.com/arcus-io/puppetdb-python/archive/0.0.1.tar.gz
 setup(
     name='puppetdb',
     version=version,
