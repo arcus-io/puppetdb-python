@@ -2,10 +2,6 @@ from mock import Mock
 import fixtures
 import json
 
-NODES = {
-    'name': 'foo'
-}
-
 def mock_api_request(host_url=None, path=None, *args, **kwargs):
     resp = Mock()
     # HACK: find the api version in url
