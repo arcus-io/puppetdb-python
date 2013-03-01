@@ -24,7 +24,7 @@ except ImportError:
 API_VERSION = 'v2'
 
 def _build_api_url(base):
-    return '{0}{1}'.format(base, API_VERSION)
+    return '{0}/{1}'.format(base, API_VERSION)
 
 def _make_request(api_base_url=None, path=None):
     url = _build_api_url(api_base_url)
