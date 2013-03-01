@@ -61,9 +61,9 @@ def get_node_facts(api_base_url=None, node_name=None):
     """
     return _make_request(api_base_url, '/nodes/{0}/facts'.format(node_name))
 
-def get_node_fact(api_base_url=None, node_name=None, fact_name=None):
+def get_node_fact_by_name(api_base_url=None, node_name=None, fact_name=None):
     """
-    Returns facts for a Node
+    Returns specified fact for a Node
 
     :param api_base_url: Base PuppetDB API url
     :param node_name: Name of node
@@ -72,3 +72,26 @@ def get_node_fact(api_base_url=None, node_name=None, fact_name=None):
     """
     return _make_request(api_base_url, '/nodes/{0}/facts/{1}'.format(node_name,
         fact_name))
+
+def get_node_resources(api_base_url=None, node_name=None):
+    """
+    Returns resources for a Node
+
+    :param api_base_url: Base PuppetDB API url
+    :param node_name: Name of node
+
+    """
+    return _make_request(api_base_url, '/nodes/{0}/resources'.format(node_name))
+
+def get_node_resource_by_type(api_base_url=None, node_name=None,
+    type_name=None):
+    """
+    Returns specified resource for a Node
+
+    :param api_base_url: Base PuppetDB API url
+    :param node_name: Name of node
+    :param type_name: Type of resource
+
+    """
+    return _make_request(api_base_url, '/nodes/{0}/resources/{1}'.format(node_name,
+        type_name))

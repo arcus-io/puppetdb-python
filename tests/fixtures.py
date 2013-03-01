@@ -49,4 +49,30 @@ def v2():
                 'value': 'amd64',
             }
         ],
+        '/nodes/host1/resources': [
+            {
+                'certname': 'host1',
+                'parameters': {
+                    'ensure': 'installed',
+                },
+                'type': 'Class',
+                'sourceline': 7,
+                'sourcefile': '/etc/foo/bar.pp',
+                'exported': False,
+                'resource': '1234567890',
+            },
+        ],
+        '/nodes/host1/resources/Class': [
+            {
+                'certname': 'host1',
+                'parameters': {
+                    'ensure': 'installed',
+                },
+                'type': 'Class',
+                'sourceline': 7,
+                'sourcefile': '/etc/foo/bar.pp',
+                'exported': False,
+                'resource': '1234567890',
+            },
+        ],
     }

@@ -46,11 +46,18 @@ class PuppetDBClient(object):
     def get_nodes(self):
         return self._api.get_nodes(self._api_url)
 
-    def get_node(self, name=None):
-        return self._api.get_node(self._api_url, name)
+    def get_node(self, node_name=None):
+        return self._api.get_node(self._api_url, node_name)
 
-    def get_node_facts(self, name=None):
-        return self._api.get_node_facts(self._api_url, name)
+    def get_node_facts(self, node_name=None):
+        return self._api.get_node_facts(self._api_url, node_name)
 
-    def get_node_fact(self, name=None, fact_name=None):
-        return self._api.get_node_fact(self._api_url, name, fact_name)
+    def get_node_fact_by_name(self, node_name=None, fact_name=None):
+        return self._api.get_node_fact_by_name(self._api_url, node_name, fact_name)
+
+    def get_node_resources(self, node_name=None):
+        return self._api.get_node_resources(self._api_url, node_name)
+
+    def get_node_resource_by_type(self, node_name=None, type_name=None):
+        return self._api.get_node_resource_by_type(self._api_url, node_name,
+            type_name)

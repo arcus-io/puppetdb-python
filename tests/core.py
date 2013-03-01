@@ -62,9 +62,9 @@ class PuppetDBClientTestCase(unittest.TestCase):
         self.assertEqual(fact_0.get('value'), 'amd64')
 
     @patch('puppetdb.utils.api_request')
-    def test_get_node_fact(self, get):
+    def test_get_node_fact_by_name(self, get):
         get.side_effect = helpers.mock_api_request
-        resp = self._client.get_node_fact('host1', 'architecture')
+        resp = self._client.get_node_fact_by_name('host1', 'architecture')
         self.assertNotEqual(len(resp), 0)
         fact_0 = resp[0]
         self.assertTrue(fact_0.has_key('certname'))
@@ -73,3 +73,21 @@ class PuppetDBClientTestCase(unittest.TestCase):
         self.assertEqual(fact_0.get('name'), 'architecture')
         self.assertTrue(fact_0.has_key('value'))
         self.assertEqual(fact_0.get('value'), 'amd64')
+
+    @patch('puppetdb.utils.api_request')
+    def test_get_node_resources(self, get):
+        get.side_effect = helpers.mock_api_request
+        resp = self._client.get_node_resources('host1')
+        self.assertNotEqual(len(resp), 0)
+        res_0 = resp[0]
+        self.assertTrue(res_0.has_key('certname'))
+        self.assertEqual(res_0.get('certname'), 'host1')
+        self.assertTrue(res_0.has_key('parameters'))
+        self.assertTrue(res_0.has_key('sourceline'))
+        self.assertEqual(res_0.get('sourceline'), 7)
+
+    @patch('puppetdb.utils.api_request')
+    def test_get_node_resource_by_type(self, get):
+        get.side_effect = helpers.mock_api_request
+        resp = self._client.get_node_resource_by_type('host1', 'Class')
+        self.assertNotEqual(len(resp), 0)
