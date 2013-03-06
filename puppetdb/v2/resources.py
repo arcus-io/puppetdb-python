@@ -18,45 +18,10 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
-import requests
-import os
-import urllib
+from puppetdb import utils
 try:
     import simplejson as json
 except ImportError:
     import json
 
-def api_request(api_base_url='http://localhost:8080/', path='', method='get',
-    data=None, params={}):
-    """
-    Wrapper function for requests
-
-    :param api_base_url: Base URL for requests
-    :param path: Path to request
-    :param method: HTTP method
-    :param data: Data for post (ignored for GETs)
-    :param params: Dict of key, value query params
-
-    """
-    method = method.lower()
-    headers = {
-        'Accept': 'application/json',
-        'Content-type': 'application/json',
-    }
-    methods = {
-        'get': requests.get,
-        'post': requests.post,
-    }
-    if path[0] != '/':
-        path = '/{0}'.format(path)
-    if params:
-        path += '?{0}'.format(urllib.urlencode(params))
-    url = '{0}{1}'.format(api_base_url, path)
-    resp = methods[method](url, data=json.dumps(data), headers=headers)
-    return resp
-
-def _make_api_request(api_url=None, path=None):
-    resp = api_request(api_url, path)
-    data = json.loads(resp.content)
-    return data
-
+API_VERSION = 'v2'
