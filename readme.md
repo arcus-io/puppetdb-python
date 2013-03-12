@@ -1,6 +1,8 @@
 # puppetdb-python
 Python interface to [PuppetDB](http://docs.puppetlabs.com/puppetdb/1.1/index.html)
 
+[![Build Status](https://travis-ci.org/arcus-io/puppetdb-python.png?branch=master)](https://travis-ci.org/arcus-io/puppetdb-python)
+
 Note: this currently only supports PuppetDB API version 2
 
 # Usage
