@@ -17,7 +17,7 @@ setup(
     author_email='support@arcus.io',
     keywords=['puppet', 'puppetdb'],
     license='Apache 2.0',
-    packages=['puppetdb'],
+    packages=['puppetdb','puppetdb/v2'],
     install_requires = [ 'requests' ],
     test_suite='tests.all_tests',
     classifiers=[
