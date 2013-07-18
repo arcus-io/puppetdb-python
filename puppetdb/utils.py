@@ -27,7 +27,7 @@ except ImportError:
     import json
 
 def api_request(api_base_url='http://localhost:8080/', path='', method='get',
-    data=None, params={}):
+    data=None, params={}, verify=True, cert=list()):
     """
     Wrapper function for requests
 
@@ -36,6 +36,8 @@ def api_request(api_base_url='http://localhost:8080/', path='', method='get',
     :param method: HTTP method
     :param data: Data for post (ignored for GETs)
     :param params: Dict of key, value query params
+    :param verify: True/False/CA_File_Name to perform SSL Verification of CA Chain
+    :param cert: list of cert and key to use for client authentication
 
     """
     method = method.lower()
@@ -52,11 +54,11 @@ def api_request(api_base_url='http://localhost:8080/', path='', method='get',
     if params:
         path += '?{0}'.format(urllib.urlencode(params))
     url = '{0}{1}'.format(api_base_url, path)
-    resp = methods[method](url, data=json.dumps(data), headers=headers)
+    resp = methods[method](url, data=json.dumps(data), headers=headers, verify=verify, cert=cert)
     return resp
 
-def _make_api_request(api_url=None, path=None):
-    resp = api_request(api_url, path)
+def _make_api_request(api_url=None, path=None, verify=False, cert=list()):
+    resp = api_request(api_url, path, verify=verify, cert=cert)
     data = json.loads(resp.content)
     return data
 
