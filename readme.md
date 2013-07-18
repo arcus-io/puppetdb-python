@@ -26,6 +26,15 @@ Note: this currently only supports PuppetDB API version 2
 
 ```
 
+For connections to a remote PuppetDB host, you have to authenticate using SSL and client certificates
+
+```
+>>> from puppetdb import PuppetDBClient
+>>> c = PuppetDBClient(host="puppetdb.example.com",port=8081,use_ssl=True,verify='/var/lib/puppet/ssl/certs/ca.pem',cert=('/var/lib/puppet/ssl/certs/puppet.travian.info.pem','/var/lib/puppet/ssl/private_keys/puppet.travian.info.pem'))
+...
+```
+
+
 # ToDo
 
 * Facts Endpoint

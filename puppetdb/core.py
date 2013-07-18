@@ -30,7 +30,7 @@ class AuthException(BaseException):
 
 class PuppetDBClient(object):
     def __init__(self, host='localhost', port=8080, api_version='v2',
-        use_ssl=False):
+        use_ssl=False, verify=True, cert=list()):
         self._host = host
         self._port = port
         self._api_version = api_version
@@ -42,24 +42,26 @@ class PuppetDBClient(object):
             'v2': v2,
         }
         self._api = apis[api_version]
+        self._verify = verify
+        self._cert = cert
         self._api_url = '{0}://{1}:{2}/{3}'.format(ssl[use_ssl], self._host,
             self._port, api_version)
 
     def get_nodes(self):
-        return self._api.nodes.get_nodes(self._api_url)
+        return self._api.nodes.get_nodes(self._api_url, self._verify, self._cert)
 
     def get_node(self, node_name=None):
-        return self._api.nodes.get_node(self._api_url, node_name)
+        return self._api.nodes.get_node(self._api_url, node_name, self._verify, self._cert)
 
     def get_node_facts(self, node_name=None):
-        return self._api.nodes.get_node_facts(self._api_url, node_name)
+        return self._api.nodes.get_node_facts(self._api_url, node_name, self._verify, self._cert)
 
     def get_node_fact_by_name(self, node_name=None, fact_name=None):
-        return self._api.nodes.get_node_fact_by_name(self._api_url, node_name, fact_name)
+        return self._api.nodes.get_node_fact_by_name(self._api_url, node_name, fact_name, self._verify, self._cert)
 
     def get_node_resources(self, node_name=None):
-        return self._api.nodes.get_node_resources(self._api_url, node_name)
+        return self._api.nodes.get_node_resources(self._api_url, node_name, self._verify, self._cert)
 
     def get_node_resource_by_type(self, node_name=None, type_name=None):
         return self._api.nodes.get_node_resource_by_type(self._api_url, node_name,
-            type_name)
+            type_name, self._verify, self._cert)
