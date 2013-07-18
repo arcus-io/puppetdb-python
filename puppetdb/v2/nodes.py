@@ -29,7 +29,7 @@ def get_nodes(api_url=None, verify=False, cert=list()):
     :param api_url: Base PuppetDB API url
 
     """
-    return utils._make_api_request(api_url, '/nodes', verify=False, cert=list())
+    return utils._make_api_request(api_url, '/nodes', verify, cert)
 
 def get_node(api_url=None, node_name=None, verify=False, cert=list()):
     """
@@ -39,7 +39,7 @@ def get_node(api_url=None, node_name=None, verify=False, cert=list()):
     :param node_name: Name of node
 
     """
-    return utils._make_api_request(api_url, '/nodes/{0}'.format(node_name), verify=False, cert=list())
+    return utils._make_api_request(api_url, '/nodes/{0}'.format(node_name), verify, cert)
 
 def get_node_facts(api_url=None, node_name=None, verify=False, cert=list()):
     """
@@ -49,7 +49,7 @@ def get_node_facts(api_url=None, node_name=None, verify=False, cert=list()):
     :param node_name: Name of node
 
     """
-    return utils._make_api_request(api_url, '/nodes/{0}/facts'.format(node_name), verify=False, cert=list())
+    return utils._make_api_request(api_url, '/nodes/{0}/facts'.format(node_name), verify, cert)
 
 def get_node_fact_by_name(api_url=None, node_name=None, fact_name=None, verify=False, cert=list()):
     """
@@ -61,7 +61,7 @@ def get_node_fact_by_name(api_url=None, node_name=None, fact_name=None, verify=F
 
     """
     return utils._make_api_request(api_url, '/nodes/{0}/facts/{1}'.format(node_name,
-        fact_name), verify=False, cert=list())
+        fact_name), verify, cert)
 
 def get_node_resources(api_url=None, node_name=None, verify=False, cert=list()):
     """
@@ -71,7 +71,7 @@ def get_node_resources(api_url=None, node_name=None, verify=False, cert=list()):
     :param node_name: Name of node
 
     """
-    return utils._make_api_request(api_url, '/nodes/{0}/resources'.format(node_name), verify=False, cert=list())
+    return utils._make_api_request(api_url, '/nodes/{0}/resources'.format(node_name), verify, cert)
 
 def get_node_resource_by_type(api_url=None, node_name=None,
     type_name=None, verify=False, cert=list()):
@@ -84,7 +84,7 @@ def get_node_resource_by_type(api_url=None, node_name=None,
 
     """
     return utils._make_api_request(api_url, '/nodes/{0}/resources/{1}'.format(node_name,
-        type_name), verify=False, cert=list())
+        type_name), verify, cert)
 
 def get_facts(api_url=None, query={}, verify=False, cert=list()):
     """
@@ -93,4 +93,4 @@ def get_facts(api_url=None, query={}, verify=False, cert=list()):
     :param api_url: Base PuppetDB API url
 
     """
-    return utils._make_api_request(api_url, '/nodes', verify=False, cert=list())
+    return utils._make_api_request(api_url, '/nodes', verify, cert)
