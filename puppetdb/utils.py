@@ -54,11 +54,14 @@ def api_request(api_base_url='http://localhost:8080/', path='', method='get',
     if params:
         path += '?{0}'.format(urllib.urlencode(params))
     url = '{0}{1}'.format(api_base_url, path)
-    resp = methods[method](url, data=json.dumps(data), headers=headers, verify=verify, cert=cert)
+    resp = methods[method](url, data=json.dumps(data), headers=headers,
+                           verify=verify, cert=cert)
     return resp
 
-def _make_api_request(api_url=None, path=None, verify=False, cert=list()):
-    resp = api_request(api_url, path, verify=verify, cert=cert)
+def _make_api_request(api_url=None, path=None, verify=False, cert=list(),
+                      params={}):
+    resp = api_request(api_url, path, method=method, params=params,
+                       verify=verify, cert=cert)
     data = json.loads(resp.content)
     return data
 

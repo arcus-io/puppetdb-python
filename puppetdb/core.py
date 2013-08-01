@@ -65,3 +65,13 @@ class PuppetDBClient(object):
     def get_node_resource_by_type(self, node_name=None, type_name=None):
         return self._api.nodes.get_node_resource_by_type(self._api_url, node_name,
             type_name, self._verify, self._cert)
+
+    def get_facts(self, query=''):
+        return self._api.facts.get_facts(self._api_url, query, self._verify, self._cert)
+    
+    def get_facts_by_name(self, fact_name):
+        return self._api.facts.get_facts_by_name(self._api_url, fact_name, self._verify, self._cert)
+    
+    def get_facts_by_name_and_value(self, fact_name, fact_value):
+        return self._api.facts.get_facts_by_name_and_value(self._api_url, fact_name, fact_value, self._verify, self._cert)
+    
