@@ -75,4 +75,35 @@ def v2():
                 'resource': '1234567890',
             },
         ],
+        '/facts': [
+            {
+                'certname': 'host1',
+                'name': 'puppetversion',
+                'value': '3.2.2',
+            },
+            {
+                'certname': 'host2',
+                'name': 'puppetversion',
+                'value': '2.7.10',
+            }
+        ],
+        '/facts/ipaddress': [
+            {
+                'certname': 'host1',
+                'name': 'ipaddress',
+                'value': '10.10.10.11',
+            },
+            {
+                'certname': 'host2',
+                'name': 'ipaddress',
+                'value': '10.10.10.12',
+            }
+        ],
+        '/facts/kernelversion/3.2.34': [
+            {
+                'certname': 'host1',
+                'name': 'kernelversion',
+                'value': '3.2.34',
+            }
+        ],
     }

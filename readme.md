@@ -24,6 +24,16 @@ Note: this currently only supports PuppetDB API version 2
 >>> c.get_node_resources('sandbox.local')
 >>> [{'sourcefile': '/etc/puppet/modules/arcus/manifests/package.pp', {...}]
 
+>>> c.get_facts('["and", ["=", "name", "kernelversion"], ["=", "value", "3.2.34"]]')
+>>> [{'certname': 'sandbox.local', 'name': 'kernelversion', 'value': '3.2.34'}, {...}]
+
+>>> c.get_facts_by_name('virtual')
+>>> [{'certname': 'sandbox.local', 'name': 'virtual', 'value': 'xenu'}, {...}]
+
+>>> c.get_facts_by_name_and_value('selinux', 'true')
+>>> [{'certname': 'sandbox.local', 'name': 'selinux', 'value': 'true'}, {...}]
+
+
 ```
 
 For connections to a remote PuppetDB host, you have to authenticate using SSL and client certificates
@@ -37,7 +47,6 @@ For connections to a remote PuppetDB host, you have to authenticate using SSL an
 
 # ToDo
 
-* Facts Endpoint
 * Resources Endpoint
 * Metrics Endpoint
 * Query support

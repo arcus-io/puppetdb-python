@@ -91,3 +91,57 @@ class PuppetDBClientTestCase(unittest.TestCase):
         get.side_effect = helpers.mock_api_request
         resp = self._client.get_node_resource_by_type('host1', 'Class')
         self.assertNotEqual(len(resp), 0)
+
+    @patch('puppetdb.utils.api_request')
+    def test_get_facts(self, get):
+        get.side_effect = helpers.mock_api_request
+        resp = self._client.get_facts(["=", "name", "architecture"])
+        self.assertNotEqual(len(resp), 0)
+        fact_0 = resp[0]
+        self.assertTrue(fact_0.has_key('certname'))
+        self.assertEqual(fact_0.get('certname'), 'host1')
+        self.assertTrue(fact_0.has_key('name'))
+        self.assertEqual(fact_0.get('name'), 'puppetversion')
+        self.assertTrue(fact_0.has_key('value'))
+        self.assertEqual(fact_0.get('value'), '3.2.2')
+        fact_1 = resp[1]
+        self.assertTrue(fact_1.has_key('certname'))
+        self.assertEqual(fact_1.get('certname'), 'host2')
+        self.assertTrue(fact_1.has_key('name'))
+        self.assertEqual(fact_1.get('name'), 'puppetversion')
+        self.assertTrue(fact_1.has_key('value'))
+        self.assertEqual(fact_1.get('value'), '2.7.10')
+
+    @patch('puppetdb.utils.api_request')
+    def test_get_facts_by_name(self, get):
+        get.side_effect = helpers.mock_api_request
+        resp = self._client.get_facts_by_name('ipaddress')
+        self.assertNotEqual(len(resp), 0)
+        fact_0 = resp[0]
+        self.assertTrue(fact_0.has_key('certname'))
+        self.assertEqual(fact_0.get('certname'), 'host1')
+        self.assertTrue(fact_0.has_key('name'))
+        self.assertEqual(fact_0.get('name'), 'ipaddress')
+        self.assertTrue(fact_0.has_key('value'))
+        self.assertEqual(fact_0.get('value'), '10.10.10.11')
+        fact_1 = resp[1]
+        self.assertTrue(fact_1.has_key('certname'))
+        self.assertEqual(fact_1.get('certname'), 'host2')
+        self.assertTrue(fact_1.has_key('name'))
+        self.assertEqual(fact_1.get('name'), 'ipaddress')
+        self.assertTrue(fact_1.has_key('value'))
+        self.assertEqual(fact_1.get('value'), '10.10.10.12')
+
+    @patch('puppetdb.utils.api_request')
+    def test_get_facts_by_name_and_value(self, get):
+        get.side_effect = helpers.mock_api_request
+        resp = self._client.get_facts_by_name_and_value('kernelversion', '3.2.34')
+        self.assertNotEqual(len(resp), 0)
+        fact_0 = resp[0]
+        self.assertTrue(fact_0.has_key('certname'))
+        self.assertEqual(fact_0.get('certname'), 'host1')
+        self.assertTrue(fact_0.has_key('name'))
+        self.assertEqual(fact_0.get('name'), 'kernelversion')
+        self.assertTrue(fact_0.has_key('value'))
+        self.assertEqual(fact_0.get('value'), '3.2.34')
+    
