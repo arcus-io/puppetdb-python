@@ -60,8 +60,7 @@ def api_request(api_base_url='http://localhost:8080/', path='', method='get',
 
 def _make_api_request(api_url=None, path=None, verify=False, cert=list(),
                       params={}):
-    resp = api_request(api_url, path, method=method, params=params,
-                       verify=verify, cert=cert)
+    resp = api_request(api_url, path, params=params, verify=verify, cert=cert)
     data = json.loads(resp.content)
     return data
 
