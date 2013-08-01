@@ -8,3 +8,5 @@ newrelic.ini
 *.egg-info/*
 *build/*
 *dist/*
+.pydevproject
+.project
